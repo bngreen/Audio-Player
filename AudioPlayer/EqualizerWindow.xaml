@@ -1,0 +1,31 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:DSP="clr-namespace:DSP;assembly=DSP"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Class="AudioPlayer.EqualizerWindow"
+	x:Name="Window"
+	Title="EqualizerWindow"
+	Width="744" Height="480" Background="#FF333333">
+	<Window.Resources>
+		<DataTemplate DataType="{x:Type DSP:Level}">
+			<Grid Height="131.5" Width="74.061">
+				
+				<Slider Margin="14.895,0,13.665,17.333" Orientation="Vertical" Minimum="-24" HorizontalAlignment="Center" Value="{Binding Value}" Maximum="0"/>
+				<TextBlock Height="17.333" TextWrapping="Wrap" VerticalAlignment="Bottom" TextAlignment="Center" Foreground="#FFB8B8B8" HorizontalAlignment="Center" Text="{Binding PrettyFrequency}"/>
+				<TextBlock HorizontalAlignment="Left" Height="17" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34.016" Foreground="#FFB8B8B8" Text="12db" TextAlignment="Center"/>
+				<TextBlock HorizontalAlignment="Left" Height="17" Margin="0,0,0,17.333" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="34.016" Foreground="#FFB8B8B8" Text="-12db" TextAlignment="Center"/>
+				
+			</Grid>
+		</DataTemplate>	
+	</Window.Resources>
+	<Grid x:Name="LayoutRoot">
+		<ListView Margin="8" ItemsSource="{Binding PlayerModel.Levels, ElementName=Window}" Background="#FF404040" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel/>
+				</ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+		</ListView>
+	</Grid>
+</Window>
